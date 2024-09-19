@@ -41,3 +41,17 @@ def main(request):
 path('', views.main),
 
 Теперь при переходе на главную страницу сайта видно Привет мир
+
+### Создаем детальное представление карточки по ее ID
+Для этого создаем новый маршрут с конвертом int, который будет принимать ID карточки
+
+path('cards/<int:card_id>/', views.card_detail, name='card_detail'),
+
+а также функцию, которая будет обрабатывать запрос и возвращать страницу с детальной информацией о карточке
+
+def card_by_id(request, card_id):
+    if card_id > 10:
+        return HttpResponse("Такой карточки нет", status=404)
+    return HttpResponse(f"Карточка с ID {card_id})
+
+
