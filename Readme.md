@@ -28,4 +28,16 @@
 
 3. Создаю приложение 'python manage.py startapp cards'
 После создания приложения регистрируем его в файле settings.py в разделе INSTALLED_APPS
-4. 
+Без этого приложение не будет работать
+
+### Создали первое представление 
+# ./cards/views.py
+from django.http import HttpResponse
+def main(request):
+    return HttpResponse("Привет, мир!")
+### Создали первый URL 
+чтобы приложение заработало, его надо зарегистрировать в urls.py конфигурации проекта
+
+path('', views.main),
+
+Теперь при переходе на главную страницу сайта видно Привет мир
