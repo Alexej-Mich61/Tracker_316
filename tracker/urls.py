@@ -16,11 +16,13 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from cards import views
+from cards import urls
 
+# Подключаем файл urls.py из приложения cards через include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main),
-    path('cards/<int:card_id>/', views.card_detail, name='card_detail'),
+    path('cards/', include('cards.urls')),
 ]

@@ -45,13 +45,20 @@ path('', views.main),
 ### Создаем детальное представление карточки по ее ID
 Для этого создаем новый маршрут с конвертом int, который будет принимать ID карточки
 
-path('cards/<int:card_id>/', views.card_detail, name='card_detail'),
+    path('admin/', admin.site.urls),
+    path('', views.main),
+    path('cards/<int:card_id>/', views.card_by_id, name='card_detail'),
 
 а также функцию, которая будет обрабатывать запрос и возвращать страницу с детальной информацией о карточке
 
 def card_by_id(request, card_id):
     if card_id > 10:
         return HttpResponse("Такой карточки нет", status=404)
-    return HttpResponse(f"Карточка с ID {card_id})
+    return HttpResponse(f"Карточка с ID {card_id}")
 
-
+### include и собственный файл urls.py для приложения cards
+1. Создал еще одно представление 'get_all_cards' в файле 'views.py'
+2. Создал файл urls.py в директории приложения cards
+3. Зарегистрировали новый файл 'urls.py' в файле urls.py конфигурации проекта с помощью функции include
+4. Зарегистрировали маршруты без префикса 'cards/' в файле 'urls.py' приложения 'cards'
+5. Удалили маршруты cards/ из файла urls.py конфигурации проекта
