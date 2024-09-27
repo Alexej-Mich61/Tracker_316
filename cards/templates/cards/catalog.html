@@ -6,13 +6,17 @@
     <title>Каталог</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
-  <!--Добавляю Header, Main, Footer-->
+<!--Добавляю Header, Main, Footer-->
   <header>
-    <!--цикл шаблона Джанго, обходим меню и формируем элементы списка в nav-->
+<!--цикл шаблона Джанго, обходим меню и формируем элементы списка в nav-->
     <nav>
       <ul>
         {% for item in menu %}
-        <li>{{ item }}</li>
+<!-- Делаем ссылки текст в title, ссылка в url-->
+        <li> <a href="{{ item.url }}" title="{{ item.title }}"> {{ item.title }}</a></li>
+        {% if not forloop.last %}
+        <hr>
+        {% endif %}
         {% endfor %}
       </ul>
     </nav>
